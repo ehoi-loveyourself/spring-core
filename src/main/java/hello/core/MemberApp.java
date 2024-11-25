@@ -5,7 +5,10 @@ import hello.core.member.*;
 public class MemberApp {
 
     public static void main(String[] args) {
-        MemberService service = new MemberServiceImpl();
+//        MemberService service = new MemberServiceImpl();
+
+        AppConfig appConfig = new AppConfig();
+        MemberService service = appConfig.memberService();
 
         // 멤버 신규 가입
         Member member = new Member(1L, "memberA", Grade.VIP);

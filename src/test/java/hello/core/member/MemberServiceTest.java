@@ -1,11 +1,19 @@
 package hello.core.member;
 
+import hello.core.AppConfig;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MemberServiceTest {
 
-    MemberService service = new MemberServiceImpl();
+    MemberService service;
+
+    @BeforeEach
+    void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        service = appConfig.memberService();
+    }
 
     @Test
     public void 회원가입() {
@@ -19,5 +27,4 @@ class MemberServiceTest {
         // then
         Assertions.assertThat(findMember).isEqualTo(member);
     }
-
 }
