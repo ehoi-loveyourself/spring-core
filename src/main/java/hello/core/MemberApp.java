@@ -1,14 +1,19 @@
 package hello.core;
 
 import hello.core.member.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MemberApp {
 
     public static void main(String[] args) {
 //        MemberService service = new MemberServiceImpl();
 
-        AppConfig appConfig = new AppConfig();
-        MemberService service = appConfig.memberService();
+//        AppConfig appConfig = new AppConfig();
+//        MemberService service = appConfig.memberService();
+
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberService service = ac.getBean("memberService", MemberService.class);
 
         // 멤버 신규 가입
         Member member = new Member(1L, "memberA", Grade.VIP);
