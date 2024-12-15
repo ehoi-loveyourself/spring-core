@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService {
 
     // as-is 기존에는 MemberServiceImpl 클라이언트가 직접 MemoryMemberRepository 구현체의 의존관계를 설정했다면
@@ -9,6 +13,7 @@ public class MemberServiceImpl implements MemberService {
     // 외부에서 구현체를 주입시켜주므로 memberServiceImpl 의 원래 기능에만 집중할 수 있다.
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
