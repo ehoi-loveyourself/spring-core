@@ -2,6 +2,7 @@ package hello.core.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.ObjectProvider;
@@ -60,11 +61,11 @@ public class PrototypeProviderTest {
         // ApplicationContext를 이용해서 직접 주입시키기
 //        private final ApplicationContext ac;
 
-        // ObjectProvider 이용
-        private final ObjectProvider<PrototypeBean> protoTypeBeanProvider;
+        // 자바에서 제공하는 Provider 이용
+        private final Provider<PrototypeBean> protoTypeBeanProvider;
 
         public int logic() {
-            PrototypeBean prototypeBean = protoTypeBeanProvider.getObject();
+            PrototypeBean prototypeBean = protoTypeBeanProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
