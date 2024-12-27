@@ -4,7 +4,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
@@ -58,10 +58,13 @@ public class PrototypeProviderTest {
 //        private final PrototypeBean prototypeBean;
 
         // ApplicationContext를 이용해서 직접 주입시키기
-        private final ApplicationContext ac;
+//        private final ApplicationContext ac;
+
+        // ObjectProvider 이용
+        private final ObjectProvider<PrototypeBean> protoTypeBeanProvider;
 
         public int logic() {
-            PrototypeBean prototypeBean = ac.getBean(PrototypeBean.class);
+            PrototypeBean prototypeBean = protoTypeBeanProvider.getObject();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
